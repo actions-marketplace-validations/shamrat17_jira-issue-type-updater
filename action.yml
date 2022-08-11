@@ -1,5 +1,5 @@
-name: Jira Issue Transition
-description: Change status of specific Jira issue
+name: Jira Issue Type Updater
+description: Change issue type of specific Jira issue
 branding:
   icon: 'chevron-right'
   color: 'blue'
