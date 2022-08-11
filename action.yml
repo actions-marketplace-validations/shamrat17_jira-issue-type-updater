@@ -5,13 +5,13 @@ branding:
   color: 'blue'
 inputs:
   issue:
-    description: Key of the issue to be transitioned
+    description: Key of the issue to update issue type
     required: true
-  transition:
-    description: The transition to apply to the issue, e.g. 'In Progress'
+  issueTypeName:
+    description: The issueTypeName to apply to the issue, e.g. 'Story'
     required: false
-  transitionId:
-    description: The id of a transition to apply to the issue
+  issueTypeId:
+    description: The issueTypeId (issue type id) to apply to the issue 
     required: false
 runs:
   using: 'node12'

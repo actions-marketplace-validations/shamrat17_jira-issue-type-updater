@@ -48,6 +48,19 @@ class Jira {
     })
   }
 
+  async updateIssueType (issueId, type) {
+    return this.fetch('updateIssue', {
+      pathname: `/rest/api/3/issue/${issueId}`,
+    }, {
+      method: 'PUT',
+      body: {
+        "fields": {
+            "issuetype": type
+        }
+     }
+    })
+  }
+
   async fetch (apiMethodName,
     { host, pathname, query },
     { method, body, headers = {} } = {}) {

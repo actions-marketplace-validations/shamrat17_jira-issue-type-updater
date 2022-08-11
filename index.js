@@ -34,18 +34,18 @@ async function exec () {
 }
 
 function parseArgs () {
-  const transition = core.getInput('transition')
-  const transitionId = core.getInput('transitionId')
+  const issueTypeName = core.getInput('issueTypeName')
+  const issueTypeId = core.getInput('issueTypeId')
 
-  if (!transition && !transitionId) {
+  if (!issueTypeName && !issueTypeId) {
     // Either transition _or_ transitionId _must_ be provided
-    throw new Error('Error: please specify either a transition or transitionId')
+    throw new Error('Error: please specify either a issueTypeId or issueTypeName')
   }
 
   return {
     issue: core.getInput('issue'),
-    transition,
-    transitionId,
+    issueTypeName,
+    issueTypeId,
   }
 }
 

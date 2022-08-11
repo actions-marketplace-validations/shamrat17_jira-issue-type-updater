@@ -1,7 +1,6 @@
-# Jira Transition
-Transition Jira issue
+# Jira Issue Type Updater
+Update Jira issue type
 
-For examples on how to use this, check out the [gajira-demo](https://github.com/atlassian/gajira-demo) repository
 > ##### Only supports Jira Cloud. Does not support Jira Server (hosted)
 
 ## Usage
@@ -13,12 +12,12 @@ For examples on how to use this, check out the [gajira-demo](https://github.com/
 Example transition action:
 
 ```yaml
-- name: Transition issue
-  id: transition
-  uses: atlassian/gajira-transition@master
+- name: Update issue type
+  id: update
+  uses: shamrat17/jira-issue-type-updater@master
   with:
     issue: GA-181
-    transition: "In progress"
+    issueTypeName: "Bug"
 }
 ```
 
@@ -28,11 +27,11 @@ The `issue` parameter can be an issue id created or retrieved by an upstream act
 on:
   push
 
-name: Test Transition Issue
+name: Test Update Issue Type
 
 jobs:
-  test-transition-issue:
-    name: Transition Issue
+  test-update-issue-type:
+    name: Update Issue Type
     runs-on: ubuntu-latest
     steps:
     - name: Login
@@ -46,11 +45,12 @@ jobs:
       id: create
       uses: atlassian/gajira-create@master
 
-    - name: Transition issue
-      uses: atlassian/gajira-transition@master
+    - name: Update issue type
+      id: update
+      uses: shamrat17/jira-issue-type-updater@master
       with:
-        issue: ${{ steps.create.outputs.issue }}
-        transition: "In progress"
+        issue: GA-181
+        issueTypeName: "Bug"
 ```
 ----
 ## Action Spec:
@@ -60,15 +60,16 @@ jobs:
 
 ### Inputs
 - `issue` (required) - issue key to perform a transition on
-- `transition` - Case insensetive name of transition to apply. Example: `Cancel` or `Accept`
-- `transitionId` - transition id to apply to an issue
+- `issueTypeName` - Case insensetive name of issue type to apply. Example: `Story` or `Bug`
+- `issueTypeId` - issue type id to update issue type. (only required if no issueTypeName provided)
 
 ### Outputs
 - None
 
 ### Reads fields from config file at $HOME/jira/config.yml
 - `issue`
-- `transitionId`
+- `issueTypeName`
+- `issueTypeId`
 
 ### Writes fields to config file at $HOME/jira/config.yml
 - None
