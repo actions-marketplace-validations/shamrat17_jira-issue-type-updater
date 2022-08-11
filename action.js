@@ -24,7 +24,7 @@ module.exports = class {
     if (issueTypeName) {
       type['name'] = issueTypeName
     } else if (issueTypeId) {
-      type['id'] = issueTypeName
+      type['id'] = issueTypeId
     } 
     
     await this.Jira.updateIssueType(issueId, type)
